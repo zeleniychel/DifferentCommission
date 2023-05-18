@@ -9,7 +9,7 @@ fun calcCommission (card: String = "VK Pay", pastTransfer: Int = 0, currentTrans
 }
 
 fun mastercardMaestroCommission (pastTransfer: Int, currentTransfer: Int): Double {
-    val commission = 0.0075
+    val commission = 0.006
     val additionalCommission = 20
     val limit = 75000
     return if (pastTransfer < limit) 0.0 else (currentTransfer * commission) + additionalCommission
