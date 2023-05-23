@@ -1,11 +1,11 @@
 fun main () {
-    transaction("VK Pay", 35000, 100)
+    println(transaction("Mastercard", 75000, 100))
 }
 
 fun calcCommission (card: String = "VK Pay", pastTransfer: Int = 0, currentTransfer: Int) = when (card) {
     "Mastercard", "Maestro" -> mastercardMaestroCommission(pastTransfer, currentTransfer)
     "Visa", "Mir" -> visaMirCommission(currentTransfer)
-    else -> 0
+    else -> 0.0
 }
 
 fun mastercardMaestroCommission (pastTransfer: Int, currentTransfer: Int): Double {
@@ -26,10 +26,9 @@ fun limitCheck (card: String, pastTransfer: Int, currentTransfer: Int) = when (c
     else -> (currentTransfer <= 150000 && pastTransfer + currentTransfer <= 600000)
 }
 
-fun transaction (card: String, pastTransfer: Int, currentTransfer: Int) {
+fun transaction (card: String, pastTransfer: Int, currentTransfer: Int) =
     if (limitCheck(card, pastTransfer, currentTransfer)) {
-        println(calcCommission(card, pastTransfer, currentTransfer))
+        calcCommission(card, pastTransfer, currentTransfer)
     } else {
-        println("Превышен лимит по карте")
+        "Превышен лимит по карте"
     }
-}
