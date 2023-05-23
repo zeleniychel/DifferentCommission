@@ -17,7 +17,7 @@ class MainKtTest {
     fun limitCheckVKFalse () {
         val card = "VK Pay"
         val pastTransfer = 1000
-        val currentTransfer = 1000
+        val currentTransfer = 1000000
         limitCheck(card,pastTransfer, currentTransfer)
         assertFalse(false)
     }
@@ -26,7 +26,7 @@ class MainKtTest {
     fun limitCheckOtherCardsTrue () {
         val card = "Mastercard"
         val pastTransfer = 1000
-        val currentTransfer = 1000
+        val currentTransfer = 100000
         limitCheck(card,pastTransfer, currentTransfer)
         assertTrue(true)
     }
