@@ -77,7 +77,7 @@ class MainKtTest {
         val pastTransfer = 75000
         val currentTransfer = 1000
         val result = mastercardMaestroCommission(pastTransfer, currentTransfer)
-        assertEquals(null, 25.0, result, 0.0)
+        assertEquals(null, 26.0, result, 0.0)
     }
     @Test
     fun calcCommissionOtherCards () {
