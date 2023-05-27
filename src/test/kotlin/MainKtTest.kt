@@ -10,7 +10,7 @@ class MainKtTest {
         val pastTransfer = 1000
         val currentTransfer = 1000
         limitCheck(card,pastTransfer, currentTransfer)
-        assertTrue(true)
+        assertEquals(true, limitCheck(card,pastTransfer, currentTransfer))
     }
 
     @Test
@@ -18,27 +18,43 @@ class MainKtTest {
         val card = "VK Pay"
         val pastTransfer = 1000
         val currentTransfer = 1000000
-        limitCheck(card,pastTransfer, currentTransfer)
-        assertFalse(false)
+        assertEquals(false, limitCheck(card,pastTransfer, currentTransfer))
     }
 
     @Test
     fun limitCheckOtherCardsTrue () {
         val card = "Mastercard"
-        val pastTransfer = 1000
+        val pastTransfer = 0
         val currentTransfer = 100000
-        limitCheck(card,pastTransfer, currentTransfer)
-        assertTrue(true)
+        assertEquals(true, limitCheck(card,pastTransfer, currentTransfer))
+    }
+
+    @Test
+    fun limitCheckOtherCardsFalseTwo () {
+        val card = "Mastercard"
+        val pastTransfer = 5000000
+        val currentTransfer = 100000
+        assertEquals(false, limitCheck(card,pastTransfer, currentTransfer))
     }
 
     @Test
     fun limitCheckOtherCardsFalse () {
         val card = "Mastercard"
-        val pastTransfer = 1000
-        val currentTransfer = 10000000
-        limitCheck(card,pastTransfer, currentTransfer)
-        assertFalse(false)
+        val pastTransfer = 500000
+        val currentTransfer = 160000
+        assertEquals(false, limitCheck(card,pastTransfer, currentTransfer))
     }
+
+    @Test
+    fun limitCheckOtherCardsTrueTwo () {
+        val card = "Mastercard"
+        val pastTransfer = 50000
+        val currentTransfer = 160000
+        assertEquals(false, limitCheck(card,pastTransfer, currentTransfer))
+    }
+
+
+
 
     @Test
     fun transactionExceededLimit () {
@@ -122,4 +138,5 @@ class MainKtTest {
         val result = calcCommission(card, pastTransfer, currentTransfer)
         assertEquals(null, 35.0, result, 0.0)
     }
+
 }
